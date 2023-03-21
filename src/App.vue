@@ -1,31 +1,35 @@
 <template>
-  <div id="cesiumBox"></div>
+  <div class="page">
+    <div>
+      <router-link to="/imageryProvider">imageryProvider</router-link>
+      <router-link to="/test">test</router-link>
+    </div>
+    <router-view></router-view>
+  </div>
 </template>
 
-<script setup>
-  import * as Cesium from 'cesium'
-  import {onMounted} from 'vue'
-  onMounted(() => {
-    const esri = new Cesium.ArcGisMapServerImageryProvider({
-      url : 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer'
-    });
-    const viewer = new Cesium.Viewer('cesiumBox', {
-      // 不创建baseLayerPicker部件
-      baseLayerPicker: false,
-      // 设置图像提供的程序
-      imageryProvider: esri,
-      // 设置世界地形，增加地图凹凸感
-      terrainProvider: Cesium.createWorldTerrain({
-        requestWaterMask: true,
-        requestVertexNormals: true,
-      })
-    })
-  })
+<script setup lang="ts">
+ 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 #cesiumBox {
   width: 100%;
-  height: 100%;
+  Height: 100%;
+}
+.page {
+  Height: 100%;
+  display: flex;
+  div:nth-of-type(1) {
+    flex: 0 0 200px;
+    a {
+      display: block;
+      line-height: 26px;
+      padding: 0 8px;
+    }
+  }
+  div:nth-of-type(2) {
+    flex: 1 1 0;
+  }
 }
 </style>
